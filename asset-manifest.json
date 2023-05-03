@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/githubpersona/mareatorV0.5/static/css/main.298716f1.css",
+    "main.js": "/githubpersona/mareatorV0.5/static/js/main.8a0b25d8.js",
+    "static/js/377.dd8c4b37.chunk.js": "/githubpersona/mareatorV0.5/static/js/377.dd8c4b37.chunk.js",
+    "service-worker.js": "/githubpersona/mareatorV0.5/service-worker.js",
+    "index.html": "/githubpersona/mareatorV0.5/index.html",
+    "main.298716f1.css.map": "/githubpersona/mareatorV0.5/static/css/main.298716f1.css.map",
+    "main.8a0b25d8.js.map": "/githubpersona/mareatorV0.5/static/js/main.8a0b25d8.js.map",
+    "377.dd8c4b37.chunk.js.map": "/githubpersona/mareatorV0.5/static/js/377.dd8c4b37.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.298716f1.css",
+    "static/js/main.8a0b25d8.js"
+  ]
+}
