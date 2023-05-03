@@ -2,7 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from '../Contexts/UserContext';
 
-const Pie = () => {
+const Pie = (props) => {
 
     function emptyCache() {
         if ('caches' in window) {
@@ -35,7 +35,7 @@ const Pie = () => {
     return (
         <div className="pie miniletra container">
             {localizacion.direccion} | {localizacion.latitud.toString().slice(0, 4)} ; {localizacion.longitud.toString().slice(0, 4)}
-            | La práctica's App | <a href='#' onClick={emptyCache}>Actualizar</a> | <img src="imagenes/rosa_colores.png" alt="" />
+            | La práctica's App |  - <a href='#' onClick={emptyCache}>Ver: {props.version}</a> | <img src="imagenes/rosa_colores.png" alt="" />
         </div>
     )
 }

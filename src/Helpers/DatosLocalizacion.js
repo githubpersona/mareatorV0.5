@@ -6,6 +6,7 @@ export const DatosLocalizacion = {
       latitud: 43.3781,
       longitud: -8.393,
       estacion: 20,
+      id_municipio: 15030, // AEMET
       direccion: "Coruña",
     },
     {
@@ -14,6 +15,7 @@ export const DatosLocalizacion = {
       latitud: 43.3521,
       longitud: -8.222,
       estacion: 19,
+      id_municipio: 15048, // AEMET
       direccion: "Miño",
     },
     {
@@ -22,6 +24,7 @@ export const DatosLocalizacion = {
       latitud: 43.4969,
       longitud: -8.324,
       estacion: 18,
+      id_municipio: 15036, // AEMET ferrol
       direccion: "Doniños",
     },
     {
@@ -31,6 +34,15 @@ export const DatosLocalizacion = {
       longitud: -4.0533,
       estacion: 18,
       direccion: "Barmouth",
+    },
+    {
+      id: 4,
+      nombre: "Zarza",
+      latitud: 39.9118,
+      longitud: -6.827,
+      estacion: 0,
+      id_municipio: 10218, // AEMET
+      direccion: "Zarza",
     },
   ],
 };

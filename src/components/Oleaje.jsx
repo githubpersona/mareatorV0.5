@@ -20,7 +20,7 @@ const Oleaje = (props) => {
 
     let datos = [];
 
-    const direcciones = ['Norte', 'Nordés', 'Este', 'Sudeste', 'Sur', 'Suroeste', 'Oeste', 'Noroeste'];
+    const direcciones = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
     const direcciones_colores = ['blue', '#007f7f', 'green', '#7f7f00', 'red', '#ff6000', 'orange', '#7f607f'];
     const color_dia = 'white';
     const color_noche = '#e6e6e6';
@@ -170,7 +170,7 @@ const Oleaje = (props) => {
                         display: true,
                         position: 'left',
                         max: 6,
-                        min: 2,
+                        min: 0,
                         ticks: {
                             stepSize: 1
                         },

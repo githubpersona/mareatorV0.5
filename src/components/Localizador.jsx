@@ -60,6 +60,7 @@ const Localizador = () => {
             "localizacion_local",
             JSON.stringify(localizacion_temp)
         );
+        // this.addClass("btn-danger");
         debugger;
     }
 
@@ -70,7 +71,7 @@ const Localizador = () => {
                 <tbody>
                     <tr>
                         <td>
-                            <button type="button" className="btn" onClick={() => localizar(1)}>Coruña</button>
+                            <button type="button" id="1" className="btn" onClick={() => localizar(1)}>Coruña</button>
                         </td>
                         <td>
                             <button type="button" className="btn" onClick={() => localizar(2)}>Miño</button>
@@ -79,7 +80,7 @@ const Localizador = () => {
                             <button type="button" className="btn" onClick={() => localizar(3)}>Doniños</button>
                         </td>
                         <td>
-                            <button type="button" className="btn" onClick={() => localizar(4)}>Barmouth</button>
+                            <button type="button" className="btn" onClick={() => localizar(5)}>Zarza</button>
                         </td>
                         <td>
                             <button type="button" className="btn" onClick={() => localizar(0)}>Aquí</button>

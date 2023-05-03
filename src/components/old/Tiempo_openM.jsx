@@ -15,10 +15,10 @@ const Tiempo = (props) => {
 
     const [temperatura, setTemperatura] = useState("");
     const [precipitacion, setPrecipitacion] = useState("");
-    const [cielo, setcielo] = useState("");
+    const [nubosidad, setNubosidad] = useState("");
     const [lluviaxhoras, setLluviaXHoras] = useState("");
 
-    const img_cielo = useRef(null);
+    const img_nubosidad = useRef(null);
     const img_lluvia = useRef(null);
 
     Chart.register(...registerables);
@@ -30,13 +30,10 @@ const Tiempo = (props) => {
     // const grafica_tiempo3 = useRef(null);
     // const [chart_tiempo3, setChart_tiempo3] = useState(null);
 
-
-    const cieloes = ['Despejado', 'Poco nuboso', 'Muy nuboso', 'Cubierto', 'Nubes altas'];
-    const cieloes_colores = ['white', '#bdbdbd', '#78909c', '#263238', '#E4E4E4'];
-
     let datos = [];
 
-    datos.etiquetas = ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h', '00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h', '00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'];
+    const nubosidades = ['0-25', '25-50', '50-75', '75-100'];
+    const nubosidades_colores = ['white', '#bdbdbd', '#78909c', '#263238'];
 
     const color_dia = 'white';
     const color_noche = '#e6e6e6';
@@ -79,180 +76,61 @@ const Tiempo = (props) => {
                 return respuesta.json()
             })
             .then((data) => {
-
-                console.log("fetch Tiempo lluvia...AEMET");
+                console.log("fetch Tiempo...");
                 console.log(data);
-                // console.log(data[0].prediccion.dia[0].precipitacion);
-                // console.log(data[0].prediccion.dia[0].precipitacion.map(({ value, periodo }) => value));
 
-                let lluvia_ahora;
-                let temperatura_ahora;
-                let cielo_ahora;
-
-                fetch(data.datos)
-                    .then((respuesta) => {
-                        return respuesta.json()
-                    })
-                    .then((data) => {
-                        console.log("fetch Tiempo lluvia...AEMET - exito");
-                        // console.log(data[0].prediccion.dia[0].precipitacion);
-                        // console.log(data[0].prediccion.dia[0].precipitacion.map(({ value, periodo }) => value));
-
-                        // lluvia2 = data[0].prediccion.dia[0].precipitacion.map(({ value, periodo }) => value);
-                        // etiquetas2 = data[0].prediccion.dia[0].precipitacion.map(({ value, periodo }) => periodo);
-
-                        debugger;
-
-                        lluvia_ahora = data[0].prediccion.dia[0].precipitacion.find(item => item.periodo == horas_hoy).value;
-                        temperatura_ahora = data[0].prediccion.dia[0].temperatura.find(item => item.periodo == horas_hoy).value;
-                        cielo_ahora = data[0].prediccion.dia[0].estadoCielo.find(item => item.periodo == horas_hoy).value;
-
-                        switch (cielo_ahora) {
-                            case "11":
-                            case "11n":
-                                img_cielo.current.src = "imagenes/cielo_despejado.png";
-                            case "12n":
-                            case "12":
-                                img_cielo.current.src = "imagenes/cielo_poco_nuboso.png";
-                                break;
-                            case "14n":
-                            case "14":
-                                img_cielo.current.src = "imagenes/cielo_nuboso.png";
-                                break;
-                            case "15":
-                            case "15n":
-                                img_cielo.current.src = "imagenes/cielo_muy_nuboso.png";
-                                break;
-                            case "16":
-                            case "16n":
-                                img_cielo.current.src = "imagenes/cielo_cubierto.png";
-                                break;
-                            case "17n":
-                            case "17":
-                                img_cielo.current.src = "imagenes/cielo_nubes_altas.png";
-                                break;
-                            case "46":
-                            case "46n":
-                                img_cielo.current.src = "imagenes/cielo_cubierto_lluvia_escasa.png";
-                                break;
-                            case "81":
-                            case "81n":
-                                img_cielo.current.src = "imagenes/cielo_niebla.png";
-                                break;
-                            case "82":
-                            case "82n":
-                                img_cielo.current.src = "imagenes/cielo_bruma.png";
-                                break;
-                        }
-
-                        if (lluvia_ahora > 0.8) {
-                            img_lluvia.current.src = "imagenes/lluvia_mucha.png";
-
-                        } else if (lluvia_ahora > 0.5) {
-                            img_lluvia.current.src = "imagenes/lluvia_media.png";
-
-                        } else if (lluvia_ahora > 0) {
-                            img_lluvia.current.src = "imagenes/lluvia_poca.png";
-
-                        } else if (lluvia_ahora == 0) {
-                            img_lluvia.current.src = "imagenes/seco.png";
-
-                        }
+                datos = data.hourly;
+                // datos.time = datos.time.map(v => v.slice(8, 10) + '-' + v.slice(11, 13) + "h");
 
 
+                datos.time = datos.time.map(v => v.slice(11, 13) + "h");
 
-                        debugger;
+                datos.colores_nubosidad = datos.cloudcover.map(nubosidad => nubosidades_colores[Math.ceil(nubosidad / 25) - 1]);
+                datos.colores_columnas = colores_columnas;
 
-                        let valores_hoy = data[0].prediccion.dia[0].precipitacion.map(({ value, periodo }) => value);
-                        let valores_manana = data[0].prediccion.dia[1].precipitacion.map(({ value, periodo }) => value);
-                        let valores_pasado = data[0].prediccion.dia[2].precipitacion.map(({ value, periodo }) => value);
-                        let prediccion_desde = parseInt(data[0].prediccion.dia[0].precipitacion[0].periodo);
-                        datos.lluvia = Array(prediccion_desde).fill(0).concat(valores_hoy.concat(valores_manana.concat(valores_pasado)));
+                let temperatura = datos.temperature_2m[horas_hoy];
+                let precipitacion = datos.precipitation_probability[horas_hoy];
+                let nubosidad = datos.cloudcover[horas_hoy];
+                let lluvia = datos.rain[horas_hoy];
 
-                        valores_hoy = data[0].prediccion.dia[0].temperatura.map(({ value, periodo }) => value);
-                        valores_manana = data[0].prediccion.dia[1].temperatura.map(({ value, periodo }) => value);
-                        valores_pasado = data[0].prediccion.dia[2].temperatura.map(({ value, periodo }) => value);
-                        datos.temperatura = Array(prediccion_desde).fill(0).concat(valores_hoy.concat(valores_manana.concat(valores_pasado)));
-
-                        valores_hoy = data[0].prediccion.dia[0].estadoCielo.map(({ value, periodo }) => value);
-                        valores_manana = data[0].prediccion.dia[1].estadoCielo.map(({ value, periodo }) => value);
-                        valores_pasado = data[0].prediccion.dia[2].estadoCielo.map(({ value, periodo }) => value);
-                        datos.cielo = Array(prediccion_desde).fill(0).concat(valores_hoy.concat(valores_manana.concat(valores_pasado)));
-
-                        datos.colores_cielo = datos.cielo.map(cielo => {
-                            switch (cielo) {
-                                case "11":
-                                case "11n":
-                                    return cieloes_colores[0];
-                                    break;
-                                case "12n":
-                                case "12":
-                                    return cieloes_colores[1];
-                                    break;
-                                case "14n":
-                                case "14":
-                                    return cieloes_colores[1];
-                                    break;
-                                case "15":
-                                case "15n":
-                                    return cieloes_colores[2];
-                                    break;
-                                case "16":
-                                case "16n":
-                                    return cieloes_colores[3];
-                                    break;
-                                case "17n":
-                                case "17":
-                                    return cieloes_colores[4];
-                                    break;
-                                case "46":
-                                case "46n":
-                                    return cieloes_colores[3];
-                                    break;
-                                default:
-                                    return 'white';
-                            }
-                        });
-
-                        console.log(datos)
-                        // setLluviaXHoras(lluviaxhoras);
-
-                        setTemperatura(temperatura_ahora);
-                        // setPrecipitacion(precipitacion);
-                        setPrecipitacion(lluvia_ahora);
-                        setcielo(cielo_ahora);
-
-                        // // makeChart_tiempo();
-                        makeChart_tiempo2();
-                        // makeChart_tiempo3();
-
-                    });
-
-                // datos.time = datos.time.map(v => v.slice(11, 13) + "h");
-
-                // datos.colores_cielo = datos.cloudcover.map(cielo => cieloes_colores[Math.ceil(cielo / 25) - 1]);
-                // datos.colores_columnas = colores_columnas;
-
-                // let temperatura = datos.temperature_2m[horas_hoy];
-                // let precipitacion = datos.precipitation_probability[horas_hoy];
-                // let cielo = datos.cloudcover[horas_hoy];
-                // let lluvia = datos.rain[horas_hoy];
-
-                // // function getDireccion(angle) {
-                // //     var direcciones = ['Norte', 'Nordés', 'Este', 'Sudeste', 'Sur', 'Sureste', 'Oeste', 'Noroeste'];
-                // //     var index = Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
-                // //     return direcciones[index];
-                // // }
-
-                // // texto_tiempo = temperatura + "ᵒ - cielo: " + cielo + "% - Precipitación: " + precipitacion + "% ";
-                // // texto_tiempo = "--";
-
-                // if (cielo > 30) {
-                //     img_cielo.current.src = "imagenes/nubes.png";
-                // } else if (cielo > 5) {
-                //     img_cielo.current.src = "imagenes/solynubes.png";
+                // function getDireccion(angle) {
+                //     var direcciones = ['Norte', 'Nordés', 'Este', 'Sudeste', 'Sur', 'Sureste', 'Oeste', 'Noroeste'];
+                //     var index = Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
+                //     return direcciones[index];
                 // }
 
+                // texto_tiempo = temperatura + "ᵒ - Nubosidad: " + nubosidad + "% - Precipitación: " + precipitacion + "% ";
+                // texto_tiempo = "--";
+
+                if (nubosidad > 30) {
+                    img_nubosidad.current.src = "imagenes/nubes.png";
+                } else if (nubosidad > 5) {
+                    img_nubosidad.current.src = "imagenes/solynubes.png";
+                }
+
+                if (lluvia > 0.5) {
+                    img_lluvia.current.src = "imagenes/lluvia_mucha.png";
+
+                } else if (lluvia > 0.2) {
+                    img_lluvia.current.src = "imagenes/lluvia_media.png";
+
+                } else if (lluvia > 0) {
+                    img_lluvia.current.src = "imagenes/lluvia_poca.png";
+
+                } else if (lluvia == 0) {
+                    img_lluvia.current.src = "imagenes/seco.png";
+
+                }
+
+                setTemperatura(temperatura);
+                // setPrecipitacion(precipitacion);
+                setPrecipitacion(lluvia);
+                setNubosidad(nubosidad);
+                setLluviaXHoras(lluviaxhoras);
+
+                // makeChart_tiempo();
+                makeChart_tiempo2();
+                // makeChart_tiempo3();
 
 
             })
@@ -334,24 +212,23 @@ const Tiempo = (props) => {
         if (chart_tiempo2) {
             setChart_tiempo2(null);
         }
-        debugger;
         setChart_tiempo2(new Chart(ctx, {
             data: {
-                labels: datos.etiquetas.slice(horas_hoy, 73),
+                labels: datos.time.slice(horas_hoy, 73),
                 datasets: [
                     {
                         type: 'line',
                         yAxisID: 'y_temperatura',
                         borderWidth: 1,
                         pointBackgroundColor: 'red',
-                        data: datos.temperatura.slice(horas_hoy, 73),
+                        data: datos.temperature_2m.slice(horas_hoy, 73),
                     },
                     {
                         type: 'bar',
-                        yAxisID: 'y_cielo',
+                        yAxisID: 'y_nublado',
                         borderWidth: 0,
-                        data: Array(datos.cielo.slice(horas_hoy, 73).length).fill(100),
-                        backgroundColor: datos.colores_cielo.slice(horas_hoy, 73),
+                        data: Array(datos.cloudcover.slice(horas_hoy, 73).length).fill(100),
+                        backgroundColor: datos.colores_nubosidad.slice(horas_hoy, 73),
                         barPercentage: 1,
                         categoryPercentage: 1,
                     },
@@ -359,7 +236,7 @@ const Tiempo = (props) => {
                         type: 'bar',
                         yAxisID: 'y_lluvia',
 
-                        data: datos.lluvia.slice(horas_hoy, 73),
+                        data: datos.rain.slice(horas_hoy, 73),
                     },
                     // {
                     //     type: 'bar',
@@ -405,7 +282,7 @@ const Tiempo = (props) => {
                         max: 40,
                         min: 0,
                     },
-                    y_cielo: {
+                    y_nublado: {
                         title: {
                             display: false,
                             text: '%',
@@ -431,9 +308,9 @@ const Tiempo = (props) => {
                         max: 2,
                         min: 0,
                     },
-                    // y_dianoche: {
-                    //     display: false,
-                    // },
+                    y_dianoche: {
+                        display: false,
+                    },
                 }
             }
         }));
@@ -520,7 +397,7 @@ const Tiempo = (props) => {
                                 <div style={estilo_1linea} colSpan="2">{temperatura + "ᵒ "}</div>
                             </td>
                             <td>
-                                <img src='imagenes/sol.png' colSpan="2" ref={img_cielo} style={{ width: "5rem", }} />
+                                <img src='imagenes/sol.png' ref={img_nubosidad} style={{ width: "3rem", }} />
                             </td>
                             <td>
                                 <img src='imagenes/seco.png' ref={img_lluvia} style={{ height: "3rem", width: "3rem", }} />
@@ -532,7 +409,7 @@ const Tiempo = (props) => {
                             <td></td>
                             <td></td>
                             <td>
-                                {/* cod {cielo} */}
+                                {nubosidad}%
                             </td>
                             <td>
                                 {/* {precipitacion + "% "} */}
@@ -545,7 +422,7 @@ const Tiempo = (props) => {
             </div>
 
             <div className="card m-2" style={{ width: "100%", }}>
-                temperatura, lluvia y cielo
+                temperatura, lluvia y nubosidad
                 <canvas ref={grafica_tiempo2}></canvas>
 
             </div>
@@ -565,8 +442,3 @@ const Tiempo = (props) => {
 };
 
 export default Tiempo
-
-// datos.lluvia =
-//     Array(prediccion_desde).fill(0).concat(
-//         valores_hoy.concat(
-//             valores_manana.concat(valores_pasado)));

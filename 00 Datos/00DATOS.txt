@@ -10,15 +10,31 @@ AEMET:
     eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb3ljYXJsb3NuaWV2ZXNAcHJvdG9ubWFpbC5jb20iLCJqdGkiOiI0NzUxNmY0Zi1iYmVhLTQ1MzYtYmU5Mi1hYzQ2ZDgzNzVhNGYiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTY3OTE1MjQ1NCwidXNlcklkIjoiNDc1MTZmNGYtYmJlYS00NTM2LWJlOTItYWM0NmQ4Mzc1YTRmIiwicm9sZSI6IiJ9.8yuNoZeP4QYgtnq8ivQSUmpP6h768fl7N68D4CNagyo
 
     Miño: 15048
+    Coruña: 15030
 
     Ejemplo datos:
     https://opendata.aemet.es/opendata/sh/35043832
 
+    - Predice 40h
 
         3.5 ¿Está limitado el número de conexiones?
         El número de conexiones están limitadas a 50 por minuto por API Key, para evitar los
         posibles problemas de sobrecarga del sistema. También hay un límite global de conexiones
         para garantizar el funcionamiento adecuado del servicio
+    
+    - estadoCielo Códigos:
+
+      - 16: Cubierto
+      - 11: Despejado
+      - 12: Poco nuboso
+      - 14: Nuboso
+      - 15: Muy nuboso
+      - 16: Cubierto
+      - 17: Nubes altas
+      - 46: Cubierto lluvia escasa
+      - 81: Niebla
+      - 82: Bruma
+                         
     
 Mareas:
 

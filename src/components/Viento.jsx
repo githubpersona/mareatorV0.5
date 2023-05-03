@@ -22,7 +22,8 @@ const Viento = (props) => {
 
     let datos = [];
 
-    const direcciones = ['Norte', 'Nordés', 'Este', 'Sudeste', 'Sur', 'Suroeste', 'Oeste', 'Noroeste'];
+    // const direcciones = ['Norte', 'Nordés', 'Este', 'Sudeste', 'Sur', 'Suroeste', 'Oeste', 'Noroeste'];
+    const direcciones = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
     const direcciones_colores = ['blue', '#007f7f', 'green', '#7f7f00', 'red', '#ff6000', 'orange', '#7f607f'];
     const color_dia = 'white';
     const color_noche = '#e6e6e6';
@@ -68,12 +69,16 @@ const Viento = (props) => {
                 console.log("Array de viento: ");
 
                 console.log(data.hourly);
-                debugger;
+                // debugger;
                 let texto_viento = "";
                 datos = data.hourly;
                 datos.time = datos.time.map(v => v.slice(11, 13) + "h");
 
-                datos.colores = datos.winddirection_10m.map(angulo => direcciones_colores[Math.round(((angulo %= 360) < 0 ? angulo + 360 : angulo) / 45) % 8]);
+                // datos.colores = datos.winddirection_10m.map(angulo => direcciones_colores[Math.round(((angulo %= 360) < 0 ? angulo + 360 : angulo) / 45) % 8]);
+
+                datos.colores = datos.winddirection_10m.map(angulo => direcciones_colores[getIndiceDireccion(angulo)]);
+
+                datos.direcciones = datos.winddirection_10m.map(angulo => direcciones[getIndiceDireccion(angulo)]);
 
                 datos.colores_columnas = colores_columnas;
 
@@ -88,14 +93,13 @@ const Viento = (props) => {
                 let direccion_viento = datos.winddirection_10m[horas_hoy];
                 let velocidad_viento = datos.windspeed_10m[horas_hoy];
 
-                debugger;
-                function getDireccion(angle) {
-                    var direcciones = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
+                // debugger;
+                function getIndiceDireccion(angle) {
                     var index = Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
-                    return direcciones[index];
+                    return index;
                 }
 
-                setDireccion_viento(getDireccion(direccion_viento));
+                setDireccion_viento(direcciones[getIndiceDireccion(direccion_viento)]);
 
                 setVelocidad_viento(velocidad_viento);
 

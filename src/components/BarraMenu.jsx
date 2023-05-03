@@ -4,9 +4,12 @@ import { NavLink } from 'react-router-dom'
 const BarraMenu = () => {
     return (
         <nav className='navbar navbar-expand navbar-dark bg-info cabecera'>
-            <div className='container-fluid' fixed='top'>
+            <div className='container-fluid' fixed='left'>
                 <img src='imagenes/surf.png' width='20px'></img>
-                <h2 className="navbar-brand" href="#"> Mareator</h2>
+                <h2 className="navbar-brand " href="#" style={{
+                    margin: 0,
+                    top: '50%'
+                }}> Mareator (zarza ed.)</h2>
                 <button
                     className='navbar-toggler'
                     type='button'
