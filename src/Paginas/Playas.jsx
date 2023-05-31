@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import VideoJS from "../components/VideoJS";
+import VideoJS from "../Components/VideoJS";
 import videojs from "video.js";
 
 const Playas = () => {

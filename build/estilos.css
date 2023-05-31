@@ -5,18 +5,18 @@
   position: fixed;
   z-index: 999;
   width: 100%;
-  height: 2em;
+  height: 2.5em;
   top: 0;
   left: 0;
 }
-.cabecera_botones {
+.localizador {
   position: fixed;
   z-index: 999;
   width: 100%;
-  height: 2em;
-  top: 2em;
+  height: 2, 3em;
+  bottom: 1.4em;
   left: 0;
-  background-color: #b9bbc2;
+  background-color: #e8edff;
 }
 .btn {
   color: white;
@@ -25,7 +25,7 @@
   position: relative;
   z-index: 99;
   width: 100%;
-  top: 4em;
+  top: 0.4em;
   left: 0;
 }
 .pie {
@@ -34,9 +34,26 @@
   width: 100%;
   bottom: 0;
   right: 0;
-  height: 2em;
+  height: 1.6em;
   right: 0;
   background-color: #dadada;
   color: white;
   font-family: "Exo 2", sans-serif;
+}
+/* .estilo_1linea {
+  color: "white";
+  background-color: "DodgerBlue";
+  padding: "5px";
+  font-size: "22px";
+  font-family: "Sans-Serif";
+} */
+
+.tabla_barrainfo {
+  width: 100%;
+}
+
+.td_barrainfo {
+  padding: 50;
+  border: none;
+  text-align: center;
 }

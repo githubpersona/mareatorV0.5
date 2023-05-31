@@ -1,6 +1,6 @@
 {
   "name": "mareator",
-  "version": "0.5.1 3/7",
+  "version": "0.5.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -16,6 +16,8 @@
     "react": "^17.0.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.1",
+    "react-google-button": "^0.7.2",
+    "react-google-login": "^5.2.2",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "url": "^0.11.0",

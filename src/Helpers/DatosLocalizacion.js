@@ -27,14 +27,7 @@ export const DatosLocalizacion = {
       id_municipio: 15036, // AEMET ferrol
       direccion: "Doniños",
     },
-    // {
-    //   id: 4,
-    //   nombre: "Barmouth",
-    //   latitud: 52.7215,
-    //   longitud: -4.0533,
-    //   estacion: 18,
-    //   direccion: "Barmouth",
-    // },
+
     // {
     //   id: 4,
     //   nombre: "Zarza",
@@ -52,6 +45,16 @@ export const DatosLocalizacion = {
       estacion: 27,
       id_municipio: 36022, // AEMET
       direccion: "O Grove",
+    },
+    {
+      id: 5,
+      nombre: "Mawsynram",
+      latitud: 25.3043,
+      longitud: 91.582,
+      estacion: 18,
+      id_municipio: 36022, // AEMET
+
+      direccion: "Mawsynram",
     },
   ],
 };

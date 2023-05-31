@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import Localizador from "../components/Localizador";
-import Tiempo from "../components/Tiempo";
+import Localizador from "../Components/Localizador";
+import Tiempo from "../Components/Tiempo";
 import { useContext } from "react";
 import { UserContext } from "../Contexts/UserContext";
-import Viento from "../components/Viento";
+import Viento from "../Components/Viento";
 // import { createLogger } from 'video.js/dist/types/utils/log';
 
 const ElTiempo = () => {
@@ -14,6 +14,14 @@ const ElTiempo = () => {
 
   // const { value, value2 } = React.useContext(MyContext);
   const [localizacion, setLocalizacion] = localizacion_estado;
+  const { graficar_estado } = useContext(UserContext);
+
+  const [graficar, setGraficar] = graficar_estado;
+
+  useEffect(() => {
+    // This function will be executed after rendering
+    setGraficar(new Date());
+  }, []);
 
   const url_json_openmeteo =
     "https://api.open-meteo.com/v1/forecast?latitude=" +
@@ -37,7 +45,7 @@ const ElTiempo = () => {
 
   return (
     <>
-      <Tiempo url={url_json_aemet} url2={url_json_openmeteo} />
+      <Tiempo url_aemet={url_json_aemet} url_openmeteo={url_json_openmeteo} />
       <Viento url={url_json_viento} />
       <br></br>
     </>

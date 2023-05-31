@@ -38,6 +38,20 @@ AEMET:
       - 46: Cubierto lluvia escasa
       - 81: Niebla
       - 82: Bruma
+
+      "probPrecipitacion" : [ {
+        "value" : "0",
+        "periodo" : "0208"   ---------> 00h..05h
+      }, {
+        "value" : "30",
+        "periodo" : "0814"   ---------> 06h..11h
+      }, {
+        "value" : "20",
+        "periodo" : "1420"   ---------> 12h..17h
+      }, {
+        "value" : "0",
+        "periodo" : "2002"   ---------> 18h..23h
+      } ],
                          
     
 Mareas:
