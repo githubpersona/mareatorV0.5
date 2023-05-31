@@ -4,6 +4,10 @@ Camaramar:
 
 Tiempo:
 
+MeteoSix:
+
+https://servizos.meteogalicia.gal/apiv4/getTidesInfo?coords=-8.393,43.3781&API_KEY=WN7oiatPXPsG1C91GdPM7a60a9qTx9MD7SfIV0HUlI0z16elB8NZj76Qsi4WMTPi
+
 AEMET:
 
     API key:

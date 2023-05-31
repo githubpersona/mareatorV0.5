@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from '../Contexts/UserContext';
+import { useState } from 'react';
 
 const Pie = (props) => {
 
@@ -18,9 +19,15 @@ const Pie = (props) => {
         }
     }
 
-    // const { direccion } = useContext(UserContext);
+    // const { direccion } = useContext(UserContext);;
+const { localizacion_estado } = useContext(UserContext);
+const { configuracion_estado } = useContext(UserContext);
 
-    const { localizacion } = useContext(UserContext);
+
+const [localizacion, setLocalizacion] = localizacion_estado;
+const [configuracion, setConfiguracion] = configuracion_estado;
+
+
     const url_web_oleaje = "https://open-meteo.com/en/docs/marine-weather-api#latitude=" + localizacion.latitud + "&longitude=" + localizacion.longitud + "&hourly=wave_height,wave_period";
     const url_json_oleaje = "https://marine-api.open-meteo.com/v1/marine?latitude=" + localizacion.latitud + "&longitude=" + localizacion.longitud + "&hourly=wave_height,wave_direction,wave_period";
 
@@ -35,7 +42,7 @@ const Pie = (props) => {
     return (
         <div className="pie miniletra container">
             {localizacion.direccion} | {localizacion.latitud.toString().slice(0, 4)} ; {localizacion.longitud.toString().slice(0, 4)}
-            | La práctica's App |  - <a href='#' onClick={emptyCache}>Ver: {props.version}</a> | <img src="imagenes/rosa_colores.png" alt="" />
+            | La práctica's App |  - <a href='#' onClick={emptyCache}>Ver: {props.version}</a> - {configuracion.periodo}
         </div>
     )
 }

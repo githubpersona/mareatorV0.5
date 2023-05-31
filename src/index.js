@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Pruebas_Video_App from "./Pruebas_Video_App";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";

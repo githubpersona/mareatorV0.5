@@ -27,22 +27,31 @@ export const DatosLocalizacion = {
       id_municipio: 15036, // AEMET ferrol
       direccion: "Doniños",
     },
+    // {
+    //   id: 4,
+    //   nombre: "Barmouth",
+    //   latitud: 52.7215,
+    //   longitud: -4.0533,
+    //   estacion: 18,
+    //   direccion: "Barmouth",
+    // },
+    // {
+    //   id: 4,
+    //   nombre: "Zarza",
+    //   latitud: 39.9118,
+    //   longitud: -6.827,
+    //   estacion: 0,
+    //   id_municipio: 10218, // AEMET
+    //   direccion: "Zarza",
+    // },
     {
       id: 4,
-      nombre: "Barmouth",
-      latitud: 52.7215,
-      longitud: -4.0533,
-      estacion: 18,
-      direccion: "Barmouth",
-    },
-    {
-      id: 4,
-      nombre: "Zarza",
-      latitud: 39.9118,
-      longitud: -6.827,
-      estacion: 0,
-      id_municipio: 10218, // AEMET
-      direccion: "Zarza",
+      nombre: "O Grove",
+      latitud: 42.4563,
+      longitud: -8.9219,
+      estacion: 27,
+      id_municipio: 36022, // AEMET
+      direccion: "O Grove",
     },
   ],
 };

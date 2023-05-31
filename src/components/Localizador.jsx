@@ -11,8 +11,11 @@ const Localizador = () => {
     // const { latitud, setLatitud } = useContext(UserContext);
     // const { longitud, setLongitud } = useContext(UserContext);
     // const { estacion, setEstacion } = useContext(UserContext);
+    const { localizacion_estado } = useContext(UserContext);
 
-    const { localizacion, setLocalizacion } = useContext(UserContext);
+  const [localizacion, setLocalizacion] = localizacion_estado;
+
+    // let localizacion = estado.localizacion[0];
 
     const [latitud_aqui, setLatitud_aqui] = useState();
     const [longitud_aqui, setLongitud_aqui] = useState();
@@ -20,10 +23,10 @@ const Localizador = () => {
 
     // const { direccion, setDireccion } = useContext(UserContext);
 
-    navigator.geolocation.getCurrentPosition(function (location) {
-        setLatitud_aqui(location.coords.latitude);
-        setLongitud_aqui(location.coords.longitude);
-    });
+    // navigator.geolocation.getCurrentPosition(function (location) {
+    //     setLatitud_aqui(location.coords.latitude);
+    //     setLongitud_aqui(location.coords.longitude);
+    // });
 
     // fetch("https://nominatim.openstreetmap.org/search.php?q=" + props.latitu>d + "," + props.longitud + "&polygon_geojson=1&format=json")
 
@@ -43,7 +46,6 @@ const Localizador = () => {
 
     function localizar(localizar_a) {
         // console.log(localizar_a);
-        debugger;
         let localizacion_temp = localizacion;
         // console.log(DatosLocalizacion.localizacion[localizar_a - 1]);
         if (localizar_a == 0) {
@@ -51,6 +53,7 @@ const Localizador = () => {
             localizacion_temp.latitud = latitud_aqui;
             localizacion_temp.longitud = longitud_aqui;
             localizacion_temp.direccion = getDireccion();
+            debugger;
             setLocalizacion(localizacion_temp);
         } else {
             localizacion_temp = DatosLocalizacion.localizacion[localizar_a - 1];
@@ -61,8 +64,9 @@ const Localizador = () => {
             JSON.stringify(localizacion_temp)
         );
         // this.addClass("btn-danger");
-        debugger;
     }
+
+    
 
     return (
 
@@ -80,11 +84,11 @@ const Localizador = () => {
                             <button type="button" className="btn" onClick={() => localizar(3)}>Doniños</button>
                         </td>
                         <td>
-                            <button type="button" className="btn" onClick={() => localizar(5)}>Zarza</button>
+                            <button type="button" className="btn" onClick={() => localizar(4)}>O Grove</button>
                         </td>
-                        <td>
+                        {/* <td>
                             <button type="button" className="btn" onClick={() => localizar(0)}>Aquí</button>
-                        </td>
+                        </td> */}
                     </tr>
                 </tbody>
             </table>

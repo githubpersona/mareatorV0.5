@@ -1,0 +1,11 @@
+https://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/
+
+yarn run deploy
+
+password: el token
+
+-> Pone published, pero al abrir da el error que no encuentra: Loading failed for the <script> with source “https://githubpersona.github.io/githubpersona/mareatorV0.5/static/js/main.8a0b25d8.js”.
+
+la url no existe, está el usuario 2 veces. si se quita la segunda, si funciona
+
+https://create-react-app.dev/docs/deployment/#building-for-relative-paths
